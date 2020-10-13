@@ -1,5 +1,7 @@
 'use strict';
 
+console.clear();
+
 {
   const year = 2020;
   const month = 4; //0から始まるので5月
@@ -9,7 +11,11 @@
     const lastDate = new Date(year, month + 1, 0).getDate();
 
     for (let i =1; i <= lastDate; i++) {
-      dates.push(i);
+      dates.push({
+        date: i,
+        isToday: false,
+        idDisable: false,
+      });
     }
 
     console.log(dates);
