@@ -44,7 +44,7 @@ console.clear();
     const dates = [];
     const lastDay = new Date(year, month + 1, 0).getDay();
 
-    for (let i = 0; i < 7 - lastDay; i++) {
+    for (let i = 1; i < 7 - lastDay; i++) {
       dates.push({
         date: i,
         isToday: false,
@@ -69,8 +69,23 @@ console.clear();
       weeks.push(dates.splice(0, 7));
     }
 
-    // console.log(dates);
-    console.log(weeks);
+    weeks.forEach(week => {
+      const tr = document.createElement('tr');
+      week.forEach(date => {
+        const td = document.createElement('td');
+
+        td.textContent = date.date;
+        if (date.isToday) {
+          td.classList.add('today');
+        }
+        if (date.isDisabled) {
+          td.classList.add('disabled');
+        }
+
+        tr.appendChild(td);
+      });
+      document.querySelector('tbody').appendChild(tr);
+    });
   }
 
   createCalendar();
