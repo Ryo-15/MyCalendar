@@ -3,8 +3,9 @@
 console.clear();
 
 {
-  let year = 2020;
-  let month = 4; //0から始まるので5月
+  const today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth();
 
   function getCalendarHead() {
     const dates = [];
@@ -36,6 +37,11 @@ console.clear();
         idDisabled: false,
       });
     }
+
+    if (year === today.getFullYear() && month === today.getMonth()) {
+      dates[today.getDate() - 1].isToday = true;
+    }
+
 
     return dates;
   }
