@@ -56,6 +56,15 @@ console.clear();
   }
 
   function createCalendar() {
+    const tbody = document.querySelector('tbody');
+    // 移動後は前の月を削除する
+    while (tbody.firstChild) {
+      tbody.removeChild(tbody.firstChild);
+    }
+
+    const title = `${year}/${String(month + 1).padStart(2, '0')}`;
+    document.getElementById('title').textContent = title;
+
     const dates = [
       ...getCalendarHead(),
       ...getCalendarBody(),
