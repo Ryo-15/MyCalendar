@@ -55,16 +55,23 @@ console.clear();
     return dates;
   }
 
-  function createCalendar() {
+  // 月をリセットする
+  function clearCalendar() {
     const tbody = document.querySelector('tbody');
     // 移動後は前の月を削除する
     while (tbody.firstChild) {
       tbody.removeChild(tbody.firstChild);
     }
+  }
 
+  // 年/月表示の更新
+  function renderTitle() {
     const title = `${year}/${String(month + 1).padStart(2, '0')}`;
     document.getElementById('title').textContent = title;
+  }
 
+  // 日数表示の更新
+  function renderWeeks() {
     const dates = [
       ...getCalendarHead(),
       ...getCalendarBody(),
@@ -97,6 +104,13 @@ console.clear();
     });
   }
 
+
+  function createCalendar() {
+    clearCalendar();
+    renderTitle();
+    renderWeeks();
+  }
+
   document.getElementById('prev').addEventListener('click', () => {
     month--;
     if (month < 0) {
@@ -108,7 +122,7 @@ console.clear();
   });
 
   document.getElementById('next').addEventListener('click', () => {
-    month--;
+    month++;
     if (month > 11) {
       year++;
       month = 0;
